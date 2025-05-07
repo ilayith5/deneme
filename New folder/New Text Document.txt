@@ -1,0 +1,7 @@
+1- python syntax + scripts 6 hours 
+2- ubuntu sideload + walkthrough 6 hours 
+3- bash main 10 command 1.5 + 1.5 
+4- terminal knowledge all 
+5- vim main commands 
+6- git / GitHub main commands + setup a repo 
+7- docker walkthrough 

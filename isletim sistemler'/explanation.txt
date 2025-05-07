@@ -1,0 +1,61 @@
+Uc prosesin birbirleriyle senkronize olarak calismalari istenmektedir.
+Senkronizasyon amaciyla semaforlar kullanilacaktir. A prosesi gerekli ortak
+kaynaklari yaratmakla ve calisma sonunda da yoketmekle sorumludur. Uc proses
+ortak iki tamsayilik bir bellek alanini kullanmaktadir. A prosesi bu iki
+tamsayilik alani, iki elemanli bir tamsayi dizisi olarak degerlendirmekte ve bu
+alanlara tamsayi degerler yazmaktadir. B prosesi ise, dizinin ilk elemani olarak
+yazilan veri hazir olunca okumakta ve ekrana yazmaktadir. C prosesi de dizinin
+ikinci elemani olan veri hazir olunca okumakta ve ekrana yazmaktadir. Bu
+islemler esnasinda veri kaybi olmamasina ozen gosterilmektedir. Tum prosesler
+sonsuz birer dongu icinde calismaktadir ve disaridan sonlandirilmalari
+gerekmektedir. A prosesi 12 numarali sinyali alinca kaynaklari sisteme iade
+etmektedir. 
+
+Dosyalar:
+
+program_a.c
+program_b.c
+program_c.c
+aciklama.txt
+calistir
+
+
+Program dosyalarinin her biri ayri ayri derlenmeli ve calistirilabilir dosyalar
+olusturulmalidir.
+
+cc -Wall -o pa program_a.c
+cc -Wall -o pb program_b.c
+cc -Wall -o pc program_c.c
+
+Olusan uc calistirilabilir dosyanin her biri arka planda calistirilmalidir.
+
+./pa&
+./pb&
+./pc&
+
+Bu istenenleri elle yapmak yerine calistir isimli dosyayi arka planda 
+calistirarak da yapabilirsiniz. Bunun icin,
+
+./runner&
+
+yazmaniz yeterli. Ancak calistir isimli dosyanin erisim haklarinda calistirma
+hakki (execute) olmasina dikkat edin.
+
+Programlar calismalari sirasinda ekrana bir takim mesajlar cikaracaklardir. Uc
+program da sonsuz dongu icinde calistigindan disaridan sonlandirilmalari
+gerekmektedir. Alinan kaynaklarin iade islemini A prosesi 12 numarali sinyali
+alinca yapmaktadir. Bu durumda proseslerin sonlandirilmasi icin asagidaki
+islemleri verilen sirayla yapmak gerekmektedir.
+
+ps    
+
+ps sonucunda her uc prosesin de proses kimlik numaralari ogrenilecek. pa'nin
+proses numarasinin 500, pb'nin 501 ve pc'nin de 502 olarak ogrenildigini
+varsayalim.
+
+kill -9 501
+kill -9 502
+kill -12 500
+
+Yukaridaki satirlarin yurutulmesi sonucnda alinan kaynaklar iade edilmis ve uc
+proses de sonlanmis olur.
